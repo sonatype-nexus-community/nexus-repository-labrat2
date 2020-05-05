@@ -6,6 +6,7 @@ orbs:
 
 build-and-test-commands: &build-and-test-commands
   mvn-build-test-command: mvn clean verify -PbuildKar -Dit
+  mvn-release-perform-command: mvn --batch-mode release:perform -s .circleci/.maven.xml -PbuildKar
   mvn-collect-artifacts-command: |
     mkdir -p ~/project/artifacts/junit/
     find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/project/artifacts/junit/ \;
