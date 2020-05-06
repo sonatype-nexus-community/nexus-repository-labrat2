@@ -249,4 +249,4 @@ The project has a “format” module, and an “IT” module.
       nexus-repository-labrat2/nexus-repository-labrat2-it/target/it-data/1/nexus3/log/nexus.log
       
    With multiple ITs, the `1` in the path above will be incremented for each IT.
-<!-- silly change to trigger CI -->
+<!-- change to trigger CI -->
