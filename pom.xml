@@ -112,8 +112,8 @@
 <!--          <arguments>-DskipTests</arguments>-->
 <!--        </configuration>-->
 <!--      </plugin>-->
-<!--    </plugins>-->
-<!--  </build>-->
+    </plugins>
+  </build>
 
 <!--  <profiles>-->
 <!--    <profile>-->
