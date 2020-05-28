@@ -47,6 +47,8 @@
 
   <properties>
     <nxrm-version>3.22.1-02</nxrm-version>
+    <serverId>rso</serverId>
+    <release-profiles>gpg-sign</release-profiles>
   </properties>
 
   <repositories>
@@ -94,9 +96,9 @@
         <version>1.6.8</version>
         <extensions>true</extensions>
         <configuration>
-<!--          <serverId>rso</serverId>-->
-<!--          <nexusUrl>https://repository.sonatype.org/</nexusUrl>-->
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+          <serverId>${serverId}</serverId>
+          <nexusUrl>https://repository.sonatype.org/</nexusUrl>
+<!--          <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
         </configuration>
       </plugin>
 
@@ -105,7 +107,7 @@
         <configuration>
           <!-- Something in the pom hierarchy overrides the default 'pushChanges == true', so we reset that here. -->
 <!--          <pushChanges>true</pushChanges>-->
-<!--          <releaseProfiles>gpg-sign</releaseProfiles>-->
+          <releaseProfiles>${release-profiles}</releaseProfiles>
           <!-- Tests will have been run by CI prior to release. -->
           <arguments>-DskipTests</arguments>
         </configuration>
