@@ -94,8 +94,8 @@
         <version>1.6.8</version>
         <extensions>true</extensions>
         <configuration>
-          <serverId>rso</serverId>
-          <nexusUrl>https://repository.sonatype.org/</nexusUrl>
+<!--          <serverId>rso</serverId>-->
+<!--          <nexusUrl>https://repository.sonatype.org/</nexusUrl>-->
           <autoReleaseAfterClose>true</autoReleaseAfterClose>
         </configuration>
       </plugin>
