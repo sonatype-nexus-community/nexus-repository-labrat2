@@ -90,63 +90,63 @@
         </executions>
       </plugin>
 
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.8</version>
-        <extensions>true</extensions>
-        <configuration>
-          <serverId>${serverId}</serverId>
-          <nexusUrl>https://repository.sonatype.org/</nexusUrl>
-<!--          <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
-        </configuration>
-      </plugin>
+<!--      <plugin>-->
+<!--        <groupId>org.sonatype.plugins</groupId>-->
+<!--        <artifactId>nexus-staging-maven-plugin</artifactId>-->
+<!--        <version>1.6.8</version>-->
+<!--        <extensions>true</extensions>-->
+<!--        <configuration>-->
+<!--          <serverId>${serverId}</serverId>-->
+<!--          <nexusUrl>https://repository.sonatype.org/</nexusUrl>-->
+<!--&lt;!&ndash;          <autoReleaseAfterClose>true</autoReleaseAfterClose>&ndash;&gt;-->
+<!--        </configuration>-->
+<!--      </plugin>-->
 
-      <plugin>
-        <artifactId>maven-release-plugin</artifactId>
-        <configuration>
-          <!-- Something in the pom hierarchy overrides the default 'pushChanges == true', so we reset that here. -->
-<!--          <pushChanges>true</pushChanges>-->
-          <releaseProfiles>${release-profiles}</releaseProfiles>
-          <!-- Tests will have been run by CI prior to release. -->
-          <arguments>-DskipTests</arguments>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+<!--      <plugin>-->
+<!--        <artifactId>maven-release-plugin</artifactId>-->
+<!--        <configuration>-->
+<!--          &lt;!&ndash; Something in the pom hierarchy overrides the default 'pushChanges == true', so we reset that here. &ndash;&gt;-->
+<!--&lt;!&ndash;          <pushChanges>true</pushChanges>&ndash;&gt;-->
+<!--          <releaseProfiles>${release-profiles}</releaseProfiles>-->
+<!--          &lt;!&ndash; Tests will have been run by CI prior to release. &ndash;&gt;-->
+<!--          <arguments>-DskipTests</arguments>-->
+<!--        </configuration>-->
+<!--      </plugin>-->
+<!--    </plugins>-->
+<!--  </build>-->
 
-  <profiles>
-    <profile>
-      <id>gpg-sign</id>
-      <!--
-      only sign during deploy phase
-      -->
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.6</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-                <configuration>
-                  <gpgArguments>
-                    <arg>--pinentry-mode</arg>
-                    <arg>loopback</arg>
-                  </gpgArguments>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-      <properties>
-        <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
-      </properties>
-    </profile>
-  </profiles>
+<!--  <profiles>-->
+<!--    <profile>-->
+<!--      <id>gpg-sign</id>-->
+<!--      &lt;!&ndash;-->
+<!--      only sign during deploy phase-->
+<!--      &ndash;&gt;-->
+<!--      <build>-->
+<!--        <plugins>-->
+<!--          <plugin>-->
+<!--            <artifactId>maven-gpg-plugin</artifactId>-->
+<!--            <version>1.6</version>-->
+<!--            <executions>-->
+<!--              <execution>-->
+<!--                <id>sign-artifacts</id>-->
+<!--                <phase>verify</phase>-->
+<!--                <goals>-->
+<!--                  <goal>sign</goal>-->
+<!--                </goals>-->
+<!--                <configuration>-->
+<!--                  <gpgArguments>-->
+<!--                    <arg>&#45;&#45;pinentry-mode</arg>-->
+<!--                    <arg>loopback</arg>-->
+<!--                  </gpgArguments>-->
+<!--                </configuration>-->
+<!--              </execution>-->
+<!--            </executions>-->
+<!--          </plugin>-->
+<!--        </plugins>-->
+<!--      </build>-->
+<!--      <properties>-->
+<!--        <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>-->
+<!--      </properties>-->
+<!--    </profile>-->
+<!--  </profiles>-->
 </project>
