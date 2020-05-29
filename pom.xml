@@ -46,7 +46,7 @@
   </distributionManagement>
 
   <properties>
-    <nxrm-version>3.24.0-02</nxrm-version>
+    <nxrm-version>3.24.0-01</nxrm-version>
     <serverId>rso</serverId>
     <release-profiles>gpg-sign</release-profiles>
   </properties>
