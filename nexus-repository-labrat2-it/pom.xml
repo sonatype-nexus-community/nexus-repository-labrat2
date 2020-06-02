@@ -19,7 +19,7 @@
   <parent>
     <groupId>org.sonatype.nexus.plugins</groupId>
     <artifactId>nexus-repository-labrat2-parent</artifactId>
-    <version>0.0.19-SNAPSHOT</version>
+    <version>0.0.19</version>
   </parent>
 
   <artifactId>nexus-repository-labrat2-it</artifactId>
