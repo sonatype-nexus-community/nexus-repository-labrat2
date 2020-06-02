@@ -46,8 +46,8 @@
   </distributionManagement>
 
   <properties>
-    <nxrm-version>3.24.0-01</nxrm-version>
-    <serverId>rso</serverId>
+    <nxrm-version>${nexus.version}</nxrm-version>
+    <serverId>>https://repository.sonatype.org</serverId>
     <release-profiles>gpg-sign</release-profiles>
   </properties>
 
