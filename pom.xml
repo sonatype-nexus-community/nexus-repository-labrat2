@@ -24,7 +24,7 @@
   </parent>
 
   <artifactId>nexus-repository-labrat2-parent</artifactId>
-  <version>0.0.28-SNAPSHOT</version>
+  <version>0.0.28</version>
   <packaging>pom</packaging>
 
   <inceptionYear>2020</inceptionYear>
@@ -36,7 +36,7 @@
 
   <scm>
     <developerConnection>scm:git:git@github.com:sonatype-nexus-community/nexus-repository-labrat2.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>nexus-repository-labrat2-parent-0.0.28</tag>
   </scm>
   <distributionManagement>
     <snapshotRepository>
