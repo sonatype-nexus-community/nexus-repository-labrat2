@@ -87,6 +87,17 @@
           </execution>
         </executions>
       </plugin>
+
+      <plugin>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <!-- Something in the pom hierarchy overrides the default 'pushChanges == true', so we reset that here. -->
+          <pushChanges>true</pushChanges>
+          <!-- Tests will have been run by CI prior to release. -->
+          <arguments>-DskipTests</arguments>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 
@@ -102,15 +113,6 @@
             <extensions>true</extensions>
             <configuration>
               <autoReleaseAfterClose>true</autoReleaseAfterClose>
-            </configuration>
-          </plugin>
-          <plugin>
-            <artifactId>maven-release-plugin</artifactId>
-            <configuration>
-              <!-- Something in the pom hierarchy overrides the default 'pushChanges == true', so we reset that here. -->
-              <pushChanges>true</pushChanges>
-              <!-- Tests will have been run by CI prior to release. -->
-              <arguments>-DskipTests</arguments>
             </configuration>
           </plugin>
         </plugins>
@@ -132,16 +134,6 @@
               <serverId>rso</serverId>
               <nexusUrl>https://repository.sonatype.org/</nexusUrl>
               <autoReleaseAfterClose>true</autoReleaseAfterClose>
-            </configuration>
-          </plugin>
-          <plugin>
-            <artifactId>maven-release-plugin</artifactId>
-            <configuration>
-              <!-- Something in the pom hierarchy overrides the default 'pushChanges == true', so we reset that here. -->
-              <pushChanges>true</pushChanges>
-<!--              <releaseProfiles>gpg-sign</releaseProfiles>-->
-              <!-- Tests will have been run by CI prior to release. -->
-              <arguments>-DskipTests</arguments>
             </configuration>
           </plugin>
           <plugin>
