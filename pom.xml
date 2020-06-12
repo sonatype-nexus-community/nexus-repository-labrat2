@@ -20,7 +20,7 @@
   <parent>
     <groupId>org.sonatype.nexus.plugins</groupId>
     <artifactId>nexus-plugins</artifactId>
-    <version>3.25.0-test-01</version>
+    <version>3.23.0-01</version>
   </parent>
 
   <artifactId>nexus-repository-labrat2-parent</artifactId>
@@ -46,7 +46,7 @@
   </distributionManagement>
 
   <properties>
-    <nxrm-version>3.24.0-73</nxrm-version>
+    <nxrm-version>3.23.0-01</nxrm-version>
   </properties>
 
   <repositories>
