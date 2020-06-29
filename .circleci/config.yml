@@ -33,13 +33,23 @@ workflows:
   build-branch:
     jobs:
       - github-maven-deploy/build-and-test:
+          pre-steps:
+            - run:
+                command: |
+                  while true; do
+                    sleep 5
+                    ps auxwwf
+                    echo "======"
+                  done
+                background: true
           <<: *build-and-test-commands
           filters:
             branches:
               ignore: master
-      - run:
-          command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
-          when: always
+          post-steps:
+            - run:
+                command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+                when: always
 
   run-release:
     jobs:
