@@ -37,6 +37,9 @@ workflows:
           filters:
             branches:
               ignore: master
+      - run:
+          command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+          when: always
 
   run-release:
     jobs:
