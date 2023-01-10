@@ -14,13 +14,13 @@
 
 -->
 <!-- generated with nexus-format-archetype version 1.0.32 on May 5, 2020 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.sonatype.nexus.plugins</groupId>
     <artifactId>nexus-plugins</artifactId>
-    <version>3.25.0-testing-03</version>
+    <version>3.24.0-02</version>
   </parent>
 
   <artifactId>nexus-repository-labrat2-parent</artifactId>
@@ -46,7 +46,7 @@
   </distributionManagement>
 
   <properties>
-    <nxrm-version>3.25.0-testing-03</nxrm-version>
+    <nxrm-version>3.24.0-02</nxrm-version>
   </properties>
 
   <repositories>
