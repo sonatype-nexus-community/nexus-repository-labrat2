@@ -24,7 +24,7 @@
   </parent>
 
   <artifactId>nexus-repository-labrat2-parent</artifactId>
-  <version>0.0.46-SNAPSHOT</version>
+  <version>0.0.46</version>
   <packaging>pom</packaging>
 
   <description>Test project, generated from archetype: nexus-format-archetype. Release should fail.</description>
@@ -37,7 +37,7 @@
 
   <scm>
     <developerConnection>scm:git:git@github.com:sonatype-nexus-community/nexus-repository-labrat2.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>nexus-repository-labrat2-parent-0.0.46</tag>
   </scm>
   <distributionManagement>
     <snapshotRepository>
