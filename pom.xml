@@ -27,6 +27,7 @@
   <version>0.0.46-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+  <description>Test project, generated from archetype: nexus-format-archetype. Release should fail.</description>
   <inceptionYear>2020</inceptionYear>
 
   <modules>
