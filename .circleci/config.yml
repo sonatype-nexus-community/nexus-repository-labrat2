@@ -1,27 +1,10 @@
 version: 2.1
 
 orbs:
-  github-maven-deploy: github-maven-deploy/github-maven-deploy@1.0.5
-  circleci-maven-release-orb: sonatype-nexus-community/circleci-maven-release-orb@0.0.15
-
-executors:
-  nxrm-maven-executor:
-    docker:
-      - image: circleci/openjdk:8-jdk
-    environment:
-      # limit max memory for JVM to allow more memory for non-JVM build processes (e.g. yarn)
-      MAVEN_OPTS: -Xmx2700m
-
-build-and-test-commands: &build-and-test-commands
-  executor: nxrm-maven-executor
-  mvn-build-test-command: mvn clean verify -PbuildKar -Dit
-  mvn-collect-artifacts-command: |
-    mkdir -p ~/project/artifacts/junit/
-    find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/project/artifacts/junit/ \;
-    find . -type f -regex ".*/target/failsafe-reports/.*xml" -exec cp {} ~/project/artifacts/junit/ \;
+  maven: circleci/maven@1.4.0
+  circleci-maven-release-orb: sonatype-nexus-community/circleci-maven-release-orb@0.0.18
 
 release-args: &release-args
-  executor: nxrm-maven-executor
   mvn-release-perform-command: mvn --batch-mode release:perform -s .circleci/.maven.xml -PbuildKar,circle-ci-release
   ssh-fingerprints: "51:27:e7:c8:f3:e4:31:81:f2:76:50:db:08:7e:90:87"
   context: rso-base
@@ -29,10 +12,40 @@ release-args: &release-args
     branches:
       only: main
 
+jobs:
+  build_and_test:
+    docker:
+      - image: 'cimg/openjdk:8.0'
+    steps:
+      - checkout
+      - maven/with_cache:
+          verify_dependencies: false
+          steps:
+            - run:
+                name: Run Maven Build
+                command: |
+                  mvn clean --batch-mode verify -PbuildKar -Dit
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/project/artifacts/junit/
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/project/artifacts/junit/ \;
+            find . -type f -regex ".*/target/failsafe-reports/.*xml" -exec cp {} ~/project/artifacts/junit/ \;
+            mkdir -p ~/project/artifacts/it-reports/
+            find . -type f -regex ".*/target/it-reports/.*" -exec cp {} ~/project/artifacts/it-reports/ \;
+          when: always
+      - store_test_results:
+          path: ~/project/artifacts/junit
+      - store_artifacts:
+          path: ~/project/artifacts/it-reports
+
 workflows:
   build-branch:
     jobs:
-      - github-maven-deploy/build-and-test:
+      - build_and_test:
+          filters:
+            branches:
+              ignore: main
           pre-steps:
             - run:
                 command: |
@@ -42,10 +55,6 @@ workflows:
                     echo "======"
                   done
                 background: true
-          <<: *build-and-test-commands
-          filters:
-            branches:
-              ignore: main
           post-steps:
             - run:
                 command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
@@ -65,12 +74,11 @@ workflows:
 
   release-from-main:
     jobs:
-      - github-maven-deploy/build-and-test:
-          <<: *build-and-test-commands
+      - build_and_test:
           filters:
             branches:
               only: main
       - circleci-maven-release-orb/run-maven-release:
           requires:
-            - github-maven-deploy/build-and-test
+            - build_and_test
           <<: *release-args
